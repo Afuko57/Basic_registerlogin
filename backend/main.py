@@ -3,26 +3,22 @@ from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel
 import mysql.connector
+from model import User
 from datetime import datetime, timedelta
 
 app = FastAPI()
 
-with mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="",
-  database="learning"
-) as db:
-    cursor = db.cursor()
+db = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",
+    database="learning"
+)
 
 SECRET_KEY = "yoursecretkey"
 ALGORITHM = "HS256"
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
-
-class User(BaseModel):
-    username: str
-    password: str
 
 @app.post("/register")
 def register(user: User):
