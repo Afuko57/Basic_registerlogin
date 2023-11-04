@@ -61,7 +61,7 @@ def login(user: User):
             else:
                 raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
     finally:
-        db.db.close()
+        cursor.close() 
 
 @router.get("/protected" , tags=[tag])
 def protected(token: str = Depends(oauth2_scheme)):

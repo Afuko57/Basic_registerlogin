@@ -16,8 +16,10 @@ app.add_middleware(
 )
 
 import user.user as router_User
+import product.product as router_product
 
 app.include_router(router_User.router)
+app.include_router(router_product.router)
 
 if __name__ == "__main__":
     import uvicorn

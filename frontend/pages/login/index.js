@@ -24,7 +24,7 @@ export default function Login() {
       if (response.status === 200) {
         setMessage('Login successful');
 
-        router.push('/'); 
+        router.push({ pathname: '/', query: { username } });
       } else {
         setMessage('Login failed');
       }
