@@ -1,5 +1,4 @@
 from fastapi import HTTPException
-from typing import List
 from product.model.product_model import Product
 import config.database as db
 
